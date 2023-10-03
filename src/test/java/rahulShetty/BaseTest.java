@@ -49,4 +49,20 @@ public class BaseTest {
         }while(canBeScrolledMore);
     }
 
+    public void swipeByElement(WebElement element,String direction){
+        ((JavascriptExecutor)driver).executeScript("mobile: swipeGesture",ImmutableMap.of(
+                "elementId",((RemoteWebElement)element).getId(),
+                "direction",direction,
+                "percent",0.75
+        ));
+    }
+
+    public void dragAndDropGesture(WebElement element, int xAxis, int yAxis){
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "endX", xAxis,
+                "endY", yAxis
+        ));
+    }
+
 }
