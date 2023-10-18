@@ -1,7 +1,10 @@
 package generalStoreTestCases;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +13,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 public class CheckPriceSum extends BaseTestGS {
 
@@ -48,7 +52,16 @@ public class CheckPriceSum extends BaseTestGS {
         driver.findElement(By.id("android:id/button1")).click();
         driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
-        Thread.sleep(2000);
-
+        Thread.sleep(6000);
+        //hybrid
+        Set<String> context = driver.getContextHandles();
+        for(String window: context){
+            System.out.println("context is "+window);
+            driver.context(window);
+        }
+        driver.findElement(By.name("q")).sendKeys("Ricky");
+        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+        driver.context("NATIVE_APP");
     }
 }

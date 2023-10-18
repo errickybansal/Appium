@@ -19,6 +19,7 @@ public class BaseTestGS {
     @BeforeSuite
     public void setup() throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
+        options.setChromedriverExecutable("/Users/ricky.bansal/Personal/PersonalProject/Appium/chromedriver");
         options.setDeviceName("Ricky");
         options.setApp("/Users/ricky.bansal/Personal/PersonalProject/Appium/src/test/java/resources/General-Store.apk");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),options);
